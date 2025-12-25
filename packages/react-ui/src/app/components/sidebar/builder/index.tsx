@@ -1,3 +1,12 @@
+import { ApEdition, ApFlagId } from '@activepieces/shared';
+
+import { AllowOnlyLoggedInUserOnlyGuard } from '../../allow-logged-in-user-only-guard';
+import { AppSidebarHeader } from '../sidebar-header';
+import { SidebarUser } from '../sidebar-user';
+
+import { FlowsNavigation } from './flows-navigation';
+import { TablesNavigation } from './tables-navigation';
+
 import { BUILDER_NAVIGATION_SIDEBAR_ID } from '@/app/builder/flow-canvas/utils/consts';
 import { useEmbedding } from '@/components/embed-provider';
 import {
@@ -10,14 +19,6 @@ import {
 } from '@/components/ui/sidebar-shadcn';
 import { PurchaseExtraFlowsDialog } from '@/features/billing/components/active-flows-addon/purchase-active-flows-dialog';
 import { flagsHooks } from '@/hooks/flags-hooks';
-import { ApEdition, ApFlagId } from '@activepieces/shared';
-
-import { AllowOnlyLoggedInUserOnlyGuard } from '../../allow-logged-in-user-only-guard';
-import { AppSidebarHeader } from '../sidebar-header';
-import { SidebarUser } from '../sidebar-user';
-
-import { FlowsNavigation } from './flows-navigation';
-import { TablesNavigation } from './tables-navigation';
 
 function BuilderSidebarContent() {
   return (
@@ -46,12 +47,12 @@ export function BuilderNavigationSidebar({
   children: React.ReactNode;
 }) {
   const { data: edition } = flagsHooks.useFlag<ApEdition>(ApFlagId.EDITION);
-  const { embedState } = useEmbedding();
+  // const { embedState } = useEmbedding();
 
   return (
     <AllowOnlyLoggedInUserOnlyGuard>
       <SidebarProvider>
-        {!embedState.isEmbedded && <BuilderSidebarContent />}
+        {/* {!embedState.isEmbedded && <BuilderSidebarContent />} */}
         <SidebarInset>
           {children}
           {edition === ApEdition.CLOUD && <PurchaseExtraFlowsDialog />}
